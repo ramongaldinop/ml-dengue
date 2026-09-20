@@ -24,6 +24,16 @@ O modelo é um Random Forest que prevê o **nível de alerta** da dengue daqui a
    python src/avaliar.py     # avalia o modelo ano a ano
    python src/prever.py      # gera as previsões
 ```
+4. Carregue as previsões no banco. Com o Docker rodando, abra o terminal na pasta raiz do `ml-dengue` e rode:
+```
+   docker cp data/processed/previsoes.sql dengue_db:/tmp/previsoes.sql
+   docker exec -t dengue_db psql -U dengue -d dengue_db -f /tmp/previsoes.sql
+```
+   Isso cria a tabela `previsoes` (se ainda não existir) e grava as previsões nela. Para conferir:
+```
+   docker exec -t dengue_db psql -U dengue -d dengue_db -c "SELECT * FROM previsoes;"
+```
+   Rodar de novo com uma semana nova atualiza as previsões já existentes, sem duplicar.
 
 ## Como funciona
 
