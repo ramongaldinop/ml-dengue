@@ -2,15 +2,7 @@
 data_prep.py
 ------------
 Prepara o dataset pra treino do modelo de previsao, a partir de um
-export CSV da tabela casos_dengue (a mesma tabela que o Murilo populou
-via docker-compose em database/).
-
-Por que ler de um CSV exportado, e nao conectar direto no Postgres:
-o driver Python (psycopg/psycopg2) no Windows apresentou um bug de
-encoding especifico dessa maquina/ambiente, que quebrava a conexao de
-rede mesmo com o banco configurado corretamente. Exportar os dados
-uma vez via "docker exec" (que ja sabemos que funciona) e ler o CSV
-localmente contorna esse problema sem depender de rede nenhuma.
+export CSV da tabela casos_dengue.
 
 Como gerar/atualizar o export (rodar de dentro da pasta database/,
 sempre que o banco for repopulado com dados novos), colando o comando
@@ -36,7 +28,7 @@ from pathlib import Path
 import pandas as pd
 import numpy as np
 
-# --- Caminho do CSV exportado do banco do Murilo ---
+# --- Caminho do CSV exportado do banco de dados ---
 CAMINHO_CSV = Path(__file__).resolve().parent.parent / "data" / "raw" / "casos_dengue_export.csv"
 
 HORIZONTES_SEMANAS = [2, 4]  # quantas semanas a frente vamos tentar prever
