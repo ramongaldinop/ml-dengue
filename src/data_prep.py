@@ -31,7 +31,7 @@ import numpy as np
 # --- Caminho do CSV exportado do banco de dados ---
 CAMINHO_CSV = Path(__file__).resolve().parent.parent / "data" / "raw" / "casos_dengue_export.csv"
 
-HORIZONTES_SEMANAS = [2, 4]  # quantas semanas a frente vamos tentar prever
+HORIZONTES_SEMANAS = [1, 2, 3, 4]  # quantas semanas a frente vamos tentar prever
 
 
 def carregar_dados(caminho_csv=CAMINHO_CSV):
